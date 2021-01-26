@@ -7,7 +7,7 @@
         <style>* { padding: 0; margin: 0; } canvas { background: #eee; display: block; margin: 0 auto; }</style>
     </head>
     <body>
-        
+
         <canvas id="myCanvas" width="480" height="320"></canvas>
 
         <script>
@@ -17,13 +17,20 @@
             var y = canvas.height-30;
             var dx = 2;
             var dy = -2;
+            var ballRadius = 10;
 
             function drawBall() {
                 ctx.beginPath();
-                ctx.arc(x, y, 10, 0, Math.PI*2);
+                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
                 ctx.fillStyle = "#0095DD";
                 ctx.fill();
                 ctx.closePath();
+                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+                    dy = -dy;
+                }
             }
 
             function draw() {
